@@ -18,7 +18,7 @@ namespace CleaningVisualizer
                 Date = DateTime.UtcNow,
                 FullName = "Daria Cagle",
                 Phone = "+380955866452",
-                CleaningType = "Simple Wash"
+                CleaningType = "Extra Cleaning"
 
             };
         }

@@ -20,5 +20,17 @@ namespace Cleaning.Data.Repositories
         {
             CleaningOrders.Add(model);
         }
+
+        public CleaningOrder Find(int id)
+        {
+            foreach(var model in CleaningOrders)
+            {
+                if(model.Id == id)
+                {
+                    return model;
+                }
+            }
+            return null;
+        }
     }
 }
