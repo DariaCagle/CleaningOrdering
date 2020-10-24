@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Cleaning.Models.ViewModels
 {
-    class CleaningViewModel
+    public class CleaningViewModel
     {
     }
 }

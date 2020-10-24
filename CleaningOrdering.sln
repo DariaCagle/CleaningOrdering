@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleaningVisualizer", "Clean
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cleaning", "Cleaning\Cleaning.csproj", "{AC3FC71B-1A85-4E7D-8BD1-4211A3142107}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cleaning.Data", "Cleaning.Data\Cleaning.Data.csproj", "{DBCF6F04-EA6D-42C2-9264-CD0FC534B736}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{AC3FC71B-1A85-4E7D-8BD1-4211A3142107}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AC3FC71B-1A85-4E7D-8BD1-4211A3142107}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AC3FC71B-1A85-4E7D-8BD1-4211A3142107}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DBCF6F04-EA6D-42C2-9264-CD0FC534B736}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBCF6F04-EA6D-42C2-9264-CD0FC534B736}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBCF6F04-EA6D-42C2-9264-CD0FC534B736}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBCF6F04-EA6D-42C2-9264-CD0FC534B736}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
