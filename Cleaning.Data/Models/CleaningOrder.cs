@@ -12,6 +12,6 @@ namespace Cleaning.Data.Models
         public string Phone { get; set; }
         public string FullName { get; set; }
         public DateTime Date { get; set; }
-        public string WashingType { get; set; }
+        public string CleaningType { get; set; }
     }
 }

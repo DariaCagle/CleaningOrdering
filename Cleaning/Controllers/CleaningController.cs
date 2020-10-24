@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Cleaning.Domain;
+using Cleaning.Domain.Models;
+using Cleaning.Models.PostModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,7 +29,7 @@ namespace Cleaning.Controllers
                 Date = model.Date,
                 Phone = model.Phone,
                 FullName = model.FullName,
-                WashingType = model.WashingType
+                CleaningType = model.CleaningType
             };
 
             _cleaningService.CreateCleaningRequest(cleaningModel);

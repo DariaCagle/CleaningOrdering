@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Cleaning.Models.PostModels
+namespace Cleaning.Domain.Models
 {
-    public class CreateCleaningPostModel
+    public class CleaningModel
     {
+        public int Id { get; set; }
         public string Phone { get; set; }
         public string FullName { get; set; }
         public DateTime Date { get; set; }

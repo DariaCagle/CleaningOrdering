@@ -46,6 +46,15 @@
     <Compile Include="Models\ViewModels\CleaningViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Cleaning.Data\Cleaning.Data.csproj">
+      <Project>{dbcf6f04-ea6d-42c2-9264-cd0fc534b736}</Project>
+      <Name>Cleaning.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cleaning.Domain\Cleaning.Domain.csproj">
+      <Project>{d0835493-f869-467e-b500-ff70ff941811}</Project>
+      <Name>Cleaning.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
