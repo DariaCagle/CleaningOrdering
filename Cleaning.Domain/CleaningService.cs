@@ -20,7 +20,10 @@ namespace Cleaning.Domain
 
         public void CreateCleaningRequest(CleaningModel model)
         {
-            // Проверка, есть ли свободное время, чтобы записать на мойку машину
+            if (_cleaningRepository.isBusy(model.Date))
+            {
+                throw new Exception("Choose another date and time");
+            }
 
             var cleaningOrder = new CleaningOrder
             {

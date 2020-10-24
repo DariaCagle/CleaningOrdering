@@ -23,14 +23,28 @@ namespace Cleaning.Data.Repositories
 
         public CleaningOrder Find(int id)
         {
-            foreach(var model in CleaningOrders)
+            foreach(var order in CleaningOrders)
             {
-                if(model.Id == id)
+                if(order.Id == id)
                 {
-                    return model;
+                    return order;
                 }
             }
             return null;
+        }
+
+        public bool isBusy(DateTime dateTime)
+        {
+            bool isOccupied = false;
+            foreach(var order in CleaningOrders)
+            {
+                if (dateTime == order.Date)
+                {
+                    isOccupied = true;
+                    break;
+                }
+            }
+            return isOccupied;
         }
     }
 }
