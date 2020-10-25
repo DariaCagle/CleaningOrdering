@@ -1,9 +1,6 @@
 ﻿using Cleaning.Data.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Cleaning.Data.Repositories
 {
@@ -23,9 +20,9 @@ namespace Cleaning.Data.Repositories
 
         public CleaningOrder GetById(Guid id)
         {
-            foreach(var order in CleaningOrders)
+            foreach (var order in CleaningOrders)
             {
-                if(order.Id == id)
+                if (order.Id == id)
                 {
                     return order;
                 }
@@ -50,7 +47,7 @@ namespace Cleaning.Data.Repositories
         public bool isBusy(DateTime dateTime)
         {
             bool isOccupied = false;
-            foreach(var order in CleaningOrders)
+            foreach (var order in CleaningOrders)
             {
                 if (dateTime == order.Date)
                 {

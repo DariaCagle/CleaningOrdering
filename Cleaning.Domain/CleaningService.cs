@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AutoMapper;
+using Cleaning.Data.Models;
 using Cleaning.Data.Repositories;
 using Cleaning.Domain.Models;
-using Cleaning.Data.Models;
-using AutoMapper;
-using System.Runtime.CompilerServices;
+using System;
 
 namespace Cleaning.Domain
 {
@@ -21,7 +16,7 @@ namespace Cleaning.Domain
             _cleaningRepository = new CleaningRepository();
             var mapperConfig = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<CleaningModel, CleaningOrder>();                
+                cfg.CreateMap<CleaningModel, CleaningOrder>();
             });
             var mapper = new Mapper(mapperConfig);
         }
