@@ -1,12 +1,16 @@
 ﻿using Cleaning.Data.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Threading;
 
 namespace Cleaning.Data.Repositories
 {
     public class CleaningRepository
     {
         private List<CleaningOrder> CleaningOrders { get; set; }
+        private int count = 0;
 
         public CleaningRepository()
         {
@@ -15,47 +19,19 @@ namespace Cleaning.Data.Repositories
 
         public void Create(CleaningOrder model)
         {
+            model.Id = count++;
             CleaningOrders.Add(model);
         }
 
-        public CleaningOrder GetById(Guid id)
+        public DateTime GetDateTime (DateTime date)
         {
-            foreach (var order in CleaningOrders)
-            {
-                if (order.Id == id)
-                {
-                    return order;
-                }
-            }
-            return null;
+            return CleaningOrders.FirstOrDefault(x => x.Date.CompareTo(date) == 0).Date;
         }
 
-        public bool isNew(Guid id)
+        public CleaningOrder GetById(int id)
         {
-            bool isNotOccupied = true;
-            foreach (var order in CleaningOrders)
-            {
-                if (id == order.Id)
-                {
-                    isNotOccupied = false;
-                    break;
-                }
-            }
-            return isNotOccupied;
+            return CleaningOrders.FirstOrDefault(x => x.Id == id);
         }
 
-        public bool isBusy(DateTime dateTime)
-        {
-            bool isOccupied = false;
-            foreach (var order in CleaningOrders)
-            {
-                if (dateTime == order.Date)
-                {
-                    isOccupied = true;
-                    break;
-                }
-            }
-            return isOccupied;
-        }
     }
 }

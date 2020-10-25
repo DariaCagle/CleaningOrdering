@@ -2,6 +2,7 @@
 using Cleaning.Domain;
 using Cleaning.Domain.Models;
 using Cleaning.Models.PostModels;
+using Cleaning.Models.ViewModels;
 using System;
 
 namespace Cleaning.Controllers
@@ -15,8 +16,8 @@ namespace Cleaning.Controllers
             _cleaningService = new CleaningService();
             var mapperConfig = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<CreateCleaningPostModel, CleaningModel>()
-                .ForMember(dest => dest.Id, opts => opts.MapFrom(x => new Guid()));
+                cfg.CreateMap<CreateCleaningPostModel, CleaningModel>();
+                cfg.CreateMap<CleaningModel, CleaningViewModel>();
             });
             var mapper = new Mapper(mapperConfig);
         }
@@ -24,13 +25,18 @@ namespace Cleaning.Controllers
         public void CreateCleaningRequest(CreateCleaningPostModel model)
         {
             if (string.IsNullOrWhiteSpace(model.FullName))
-                throw new System.Exception("Invalid full name");
+                throw new Exception("Invalid full name");
             if (model.Phone.Length != 13)
-                throw new System.Exception("Invalid phone number");
+                throw new Exception("Invalid phone number");
 
             var cleaningModel = _mapper.Map<CleaningModel>(model);
 
             _cleaningService.CreateCleaningRequest(cleaningModel);
+        }
+
+        public CleaningViewModel GetById(int id)
+        {
+            return _mapper.Map<CleaningViewModel>(_cleaningService.GetById(id));
         }
     }
 }
