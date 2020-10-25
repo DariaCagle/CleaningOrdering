@@ -19,7 +19,8 @@ namespace Cleaning.Controllers
             _cleaningService = new CleaningService();
             var mapperConfig = new MapperConfiguration(cfg=>
             {
-                cfg.CreateMap<CreateCleaningPostModel, CleaningModel>();
+                cfg.CreateMap<CreateCleaningPostModel, CleaningModel>()
+                .ForMember(dest => dest.Id, opts => opts.MapFrom(x => new Guid()));
             });
             var mapper = new Mapper(mapperConfig);
         }

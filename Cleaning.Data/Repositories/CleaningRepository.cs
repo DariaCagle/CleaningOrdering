@@ -21,7 +21,7 @@ namespace Cleaning.Data.Repositories
             CleaningOrders.Add(model);
         }
 
-        public CleaningOrder Find(int id)
+        public CleaningOrder GetById(Guid id)
         {
             foreach(var order in CleaningOrders)
             {
@@ -31,6 +31,20 @@ namespace Cleaning.Data.Repositories
                 }
             }
             return null;
+        }
+
+        public bool isNew(Guid id)
+        {
+            bool isNotOccupied = true;
+            foreach (var order in CleaningOrders)
+            {
+                if (id == order.Id)
+                {
+                    isNotOccupied = false;
+                    break;
+                }
+            }
+            return isNotOccupied;
         }
 
         public bool isBusy(DateTime dateTime)
