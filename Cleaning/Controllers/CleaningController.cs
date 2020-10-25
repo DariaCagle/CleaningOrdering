@@ -1,4 +1,5 @@
-﻿using Cleaning.Domain;
+﻿using AutoMapper;
+using Cleaning.Domain;
 using Cleaning.Domain.Models;
 using Cleaning.Models.PostModels;
 using System;
@@ -12,9 +13,15 @@ namespace Cleaning.Controllers
     public class CleaningController
     {
         private readonly CleaningService _cleaningService;
+        private readonly IMapper _mapper;
         public CleaningController()
         {
             _cleaningService = new CleaningService();
+            var mapperConfig = new MapperConfiguration(cfg=>
+            {
+                cfg.CreateMap<CreateCleaningPostModel, CleaningModel>();
+            });
+            var mapper = new Mapper(mapperConfig);
         }
 
         public void CreateCleaningRequest(CreateCleaningPostModel model)
@@ -24,13 +31,7 @@ namespace Cleaning.Controllers
             if (model.Phone.Length != 13)
                 throw new System.Exception("Invalid phone number");
 
-            var cleaningModel = new CleaningModel
-            {
-                Date = model.Date,
-                Phone = model.Phone,
-                FullName = model.FullName,
-                CleaningType = model.CleaningType
-            };
+            var cleaningModel =_mapper.Map<CleaningModel>(model);
 
             _cleaningService.CreateCleaningRequest(cleaningModel);
         }
