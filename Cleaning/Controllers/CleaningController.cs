@@ -4,6 +4,7 @@ using Cleaning.Domain.Models;
 using Cleaning.Models.PostModels;
 using Cleaning.Models.ViewModels;
 using System;
+using System.Collections.Generic;
 
 namespace Cleaning.Controllers
 {
@@ -37,7 +38,14 @@ namespace Cleaning.Controllers
 
         public CleaningViewModel GetById(int id)
         {
-            return _mapper.Map<CleaningViewModel>(_cleaningService.GetById(id));
+            var model = _cleaningService.GetById(id);
+            return _mapper.Map<CleaningViewModel>(model);
+        }
+
+        public IEnumerable<CleaningViewModel> GetAll()
+        {
+            var models = _cleaningService.GetAll();
+            return _mapper.Map<IEnumerable<CleaningViewModel>>(models);
         }
     }
 }

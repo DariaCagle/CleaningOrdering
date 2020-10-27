@@ -13,7 +13,7 @@ namespace CleaningVisualizer
             var model = new CreateCleaningPostModel
             {
 
-                Date = new DateTime(2020, 01, 08, 10, 00, 00),
+                Date = new DateTime(2021, 01, 08, 13, 00, 00),
                 FullName = "Daria Cagle",
                 Phone = "+380955866452",
                 CleaningType = "Extra Cleaning"
@@ -21,8 +21,17 @@ namespace CleaningVisualizer
 
             controller.CreateCleaningRequest(model);
 
-            CleaningViewModel viewModel = controller.GetById(0);
+            CleaningViewModel viewModel = controller.GetById(1);
             Console.WriteLine(viewModel.FullName);
+
+            Console.WriteLine();
+
+            var allModels = controller.GetAll();
+            foreach(var mod in allModels)
+            {
+                Console.WriteLine(mod.FullName);
+            }
+            
         }
     }
 }

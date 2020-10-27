@@ -3,6 +3,7 @@ using Cleaning.Data.Models;
 using Cleaning.Data.Repositories;
 using Cleaning.Domain.Models;
 using System;
+using System.Collections.Generic;
 
 namespace Cleaning.Domain
 {
@@ -23,8 +24,9 @@ namespace Cleaning.Domain
 
         public void CreateCleaningRequest(CleaningModel model)
         {
+            var checkedDate = _cleaningRepository.GetByDateTime(model.Date);
 
-            if (_cleaningRepository.GetByDateTime(model.Date) != null)
+            if (checkedDate != null)
             {
                 throw new Exception("Choose another date and time");
             }
@@ -38,6 +40,12 @@ namespace Cleaning.Domain
         {
             var model = _cleaningRepository.GetById(id);
             return _mapper.Map<CleaningModel>(model);
+        }
+
+        public IEnumerable<CleaningModel> GetAll()
+        {
+            var models = _cleaningRepository.GetAll();
+            return _mapper.Map<IEnumerable<CleaningModel>>(models);
         }
     }
 }
