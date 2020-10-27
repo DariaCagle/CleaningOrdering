@@ -5,10 +5,11 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Data.SqlClient;
+using Cleaning.Data.Interfaces;
 
 namespace Cleaning.Data.Repositories
 {
-    public class CleaningRepository
+    public class CleaningRepository : ICleaningRepository
     {
         private readonly string _connectionString;
         public CleaningRepository()

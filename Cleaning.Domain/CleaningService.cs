@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Cleaning.Data.Interfaces;
 using Cleaning.Data.Models;
 using Cleaning.Data.Repositories;
 using Cleaning.Domain.Models;
@@ -9,7 +10,7 @@ namespace Cleaning.Domain
 {
     public class CleaningService
     {
-        private readonly CleaningRepository _cleaningRepository;
+        private readonly ICleaningRepository _cleaningRepository;
         private readonly IMapper _mapper;
 
         public CleaningService()
