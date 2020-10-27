@@ -23,9 +23,9 @@ namespace Cleaning.Data.Repositories
             CleaningOrders.Add(model);
         }
 
-        public DateTime GetDateTime (DateTime date)
+        public CleaningOrder GetByDateTime (DateTime date)
         {
-            return CleaningOrders.FirstOrDefault(x => x.Date.CompareTo(date) == 0).Date;
+            return CleaningOrders.FirstOrDefault(x => x.Date.CompareTo(date) == 0);
         }
 
         public CleaningOrder GetById(int id)

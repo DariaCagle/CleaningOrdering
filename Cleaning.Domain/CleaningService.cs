@@ -18,13 +18,13 @@ namespace Cleaning.Domain
             {
                 cfg.CreateMap<CleaningModel, CleaningOrder>().ReverseMap();
             });
-            var mapper = new Mapper(mapperConfig);
+            _mapper = new Mapper(mapperConfig);
         }
 
         public void CreateCleaningRequest(CleaningModel model)
         {
 
-            if (_cleaningRepository.GetDateTime(model.Date) != null)
+            if (_cleaningRepository.GetByDateTime(model.Date) != null)
             {
                 throw new Exception("Choose another date and time");
             }
@@ -36,7 +36,8 @@ namespace Cleaning.Domain
 
         public CleaningModel GetById(int id)
         {
-            return _mapper.Map<CleaningModel>(_cleaningRepository.GetById(id));
+            var model = _cleaningRepository.GetById(id);
+            return _mapper.Map<CleaningModel>(model);
         }
     }
 }

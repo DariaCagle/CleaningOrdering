@@ -11,6 +11,7 @@ namespace Cleaning.Controllers
     {
         private readonly CleaningService _cleaningService;
         private readonly IMapper _mapper;
+
         public CleaningController()
         {
             _cleaningService = new CleaningService();
@@ -19,7 +20,7 @@ namespace Cleaning.Controllers
                 cfg.CreateMap<CreateCleaningPostModel, CleaningModel>();
                 cfg.CreateMap<CleaningModel, CleaningViewModel>();
             });
-            var mapper = new Mapper(mapperConfig);
+            _mapper = new Mapper(mapperConfig);
         }
 
         public void CreateCleaningRequest(CreateCleaningPostModel model)
