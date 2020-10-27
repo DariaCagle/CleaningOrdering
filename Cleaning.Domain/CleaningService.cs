@@ -23,7 +23,7 @@ namespace Cleaning.Domain
             _mapper = new Mapper(mapperConfig);
         }
 
-        public void CreateCleaningRequest(CleaningModel model)
+        public CleaningModel CreateCleaningRequest(CleaningModel model)
         {
             var checkedDate = _cleaningRepository.GetByDateTime(model.Date);
 
@@ -34,7 +34,9 @@ namespace Cleaning.Domain
 
             var cleaningOrder = _mapper.Map<CleaningOrder>(model);
 
-            _cleaningRepository.Create(cleaningOrder);
+            var modelWithId = _cleaningRepository.Create(cleaningOrder);
+
+            return _mapper.Map<CleaningModel>(modelWithId);
         }
 
         public CleaningModel GetById(int id)

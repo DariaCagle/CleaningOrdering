@@ -29,9 +29,9 @@ namespace Cleaning.Data.Repositories
 
                 command.Connection = connection;
                 command.CommandType = System.Data.CommandType.Text;
-                command.CommandText = "INSERT INTO cleaning_orders(Phone,FullName,Date,CleaningType)" +
+                command.CommandText = "INSERT INTO orders(Phone,FullName,Date,CleaningType)" +
                     " OUTPUT Inserted.Id " +
-                    $"Values(\'{model.Phone}\', \'{model.FullName}\', \'{model.Date.ToString("s")}\', \'{model.CleaningType}\')";
+                    $"Values(\'{model.Phone}\', \'{model.FullName}\', \'{model.Date}\', \'{model.CleaningType}\')";
                 var insertedId = Convert.ToInt32(command.ExecuteScalar());
                 model.Id = insertedId;
                 return model;
@@ -49,8 +49,8 @@ namespace Cleaning.Data.Repositories
 
                 command.Connection = connection;
                 command.CommandType = System.Data.CommandType.Text;
-                command.CommandText = "SELECT ord.* FROM cleaning_orders as ord " +
-                    $"WHERE ord.Date = CAST(\'{date.ToString("s")}\' AS smalldatetime)";
+                command.CommandText = "SELECT ord.* FROM orders as ord " +
+                    $"WHERE ord.Date = \'{date}\'";
 
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
@@ -60,7 +60,7 @@ namespace Cleaning.Data.Repositories
                     models.Id = reader.GetInt32(0);
                     models.FullName = reader.GetString(1);
                     models.Phone = reader.GetString(2);
-                    models.Date = DateTime.Parse(reader.GetString(3));
+                    models.Date = reader.GetDateTime(3);
                     models.CleaningType = reader.GetString(4);
 
                     result.Add(models);
@@ -81,7 +81,7 @@ namespace Cleaning.Data.Repositories
 
                 command.Connection = connection;
                 command.CommandType = System.Data.CommandType.Text;
-                command.CommandText = "SELECT ord.* FROM cleaning_orders as ord " +
+                command.CommandText = "SELECT ord.* FROM orders as ord " +
                     $"WHERE ord.Id = {id}";
 
                 SqlDataReader reader = command.ExecuteReader();
@@ -91,7 +91,7 @@ namespace Cleaning.Data.Repositories
                     model.Id = reader.GetInt32(0);
                     model.FullName = reader.GetString(1);
                     model.Phone = reader.GetString(2);
-                    model.Date = DateTime.Parse(reader.GetString(3));
+                    model.Date = reader.GetDateTime(3);
                     model.CleaningType = reader.GetString(4);
                 }
                 reader.Close();
@@ -111,7 +111,7 @@ namespace Cleaning.Data.Repositories
 
                 command.Connection = connection;
                 command.CommandType = System.Data.CommandType.Text;
-                command.CommandText = "SELECT * FROM cleaning_orders";
+                command.CommandText = "SELECT * FROM orders";
 
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
@@ -121,7 +121,7 @@ namespace Cleaning.Data.Repositories
                     model.Id = reader.GetInt32(0);
                     model.FullName = reader.GetString(1);
                     model.Phone = reader.GetString(2);
-                    model.Date = DateTime.Parse(reader.GetString(3));
+                    model.Date = reader.GetDateTime(3);
                     model.CleaningType = reader.GetString(4);
 
                     allModels.Add(model);

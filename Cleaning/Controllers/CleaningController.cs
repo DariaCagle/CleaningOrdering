@@ -24,7 +24,7 @@ namespace Cleaning.Controllers
             _mapper = new Mapper(mapperConfig);
         }
 
-        public void CreateCleaningRequest(CreateCleaningPostModel model)
+        public CleaningViewModel CreateCleaningRequest(CreateCleaningPostModel model)
         {
             if (string.IsNullOrWhiteSpace(model.FullName))
                 throw new Exception("Invalid full name");
@@ -33,7 +33,9 @@ namespace Cleaning.Controllers
 
             var cleaningModel = _mapper.Map<CleaningModel>(model);
 
-            _cleaningService.CreateCleaningRequest(cleaningModel);
+            var modelWithId = _cleaningService.CreateCleaningRequest(cleaningModel);
+
+            return _mapper.Map<CleaningViewModel>(modelWithId);
         }
 
         public CleaningViewModel GetById(int id)
