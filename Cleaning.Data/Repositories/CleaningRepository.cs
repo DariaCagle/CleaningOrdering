@@ -1,11 +1,9 @@
-﻿using Cleaning.Data.Models;
+﻿using Cleaning.Data.Interfaces;
+using Cleaning.Data.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Threading;
 using System.Data.SqlClient;
-using Cleaning.Data.Interfaces;
+using System.Linq;
 
 namespace Cleaning.Data.Repositories
 {
@@ -16,7 +14,7 @@ namespace Cleaning.Data.Repositories
         {
             _connectionString = "Data Source=.; Initial Catalog = Cleaning; Integrated Security = true";
         }
-        
+
 
         public CleaningOrder Create(CleaningOrder model)
         {

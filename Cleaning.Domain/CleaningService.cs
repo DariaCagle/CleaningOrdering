@@ -25,18 +25,18 @@ namespace Cleaning.Domain
 
         public CleaningModel CreateCleaningRequest(CleaningModel model)
         {
-            var checkedDate = _cleaningRepository.GetByDateTime(model.Date);
+            var existingCleaning = _cleaningRepository.GetByDateTime(model.Date);
 
-            if (checkedDate != null)
+            if (existingCleaning != null)
             {
                 throw new Exception("Choose another date and time");
             }
 
             var cleaningOrder = _mapper.Map<CleaningOrder>(model);
 
-            var modelWithId = _cleaningRepository.Create(cleaningOrder);
+            var reservedCleaning = _cleaningRepository.Create(cleaningOrder);
 
-            return _mapper.Map<CleaningModel>(modelWithId);
+            return _mapper.Map<CleaningModel>(reservedCleaning);
         }
 
         public CleaningModel GetById(int id)

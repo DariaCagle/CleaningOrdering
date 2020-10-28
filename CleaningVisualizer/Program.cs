@@ -13,10 +13,10 @@ namespace CleaningVisualizer
             var model = new CreateCleaningPostModel
             {
 
-                Date = new DateTime(2021, 01, 08, 22, 00, 00),
-                FullName = "Daria Cagle",
-                Phone = "+380955866452",
-                CleaningType = "Extra Cleaning"
+                Date = new DateTime(2021, 01, 09, 07, 00, 00),
+                FullName = "John Smith",
+                Phone = "+380955555555",
+                CleaningType = "Super Cleaning"
             };
 
             var cleaningViewModel = controller.CreateCleaningRequest(model);

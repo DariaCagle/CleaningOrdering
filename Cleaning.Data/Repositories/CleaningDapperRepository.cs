@@ -1,12 +1,10 @@
-﻿using System;
+﻿using Cleaning.Data.Interfaces;
+using Cleaning.Data.Models;
+using Dapper;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Cleaning.Data.Interfaces;
-using Cleaning.Data.Models;
-using Dapper;
 
 namespace Cleaning.Data.Repositories
 {
@@ -26,8 +24,8 @@ namespace Cleaning.Data.Repositories
             {
                 connection.Open();
 
-                var insertedId = connection.Query<CleaningOrder>($"INSERT INTO orders(Phone,FullName,Date,CleaningType) OUTPUT Inserted.Id Values(\'{model.Phone}\', \'{model.FullName}\', \'{model.Date}\', \'{model.CleaningType}\')");
-                model.Id = insertedId.FirstOrDefault().Id;
+                var insertedModel = connection.QueryFirstOrDefault<CleaningOrder>($"INSERT INTO orders(Phone,FullName,Date,CleaningType) Values(\'{model.Phone}\', \'{model.FullName}\', \'{model.Date}\', \'{model.CleaningType}\')");
+                model.Id = insertedModel.Id;
                 return model;
             }
         }
@@ -39,7 +37,7 @@ namespace Cleaning.Data.Repositories
             {
                 connection.Open();
 
-                return connection.Query<CleaningOrder>($"SELECT ord.* FROM orders as ord WHERE ord.Date = \'{date}\';").FirstOrDefault();
+                return connection.QueryFirstOrDefault<CleaningOrder>($"SELECT ord.* FROM orders as ord WHERE ord.Date = \'{date}\';");
             }
         }
 
@@ -49,7 +47,7 @@ namespace Cleaning.Data.Repositories
             {
                 connection.Open();
 
-                return connection.Query<CleaningOrder>($"SELECT ord.* FROM orders as ord WHERE Id = {id};").FirstOrDefault();
+                return connection.QueryFirstOrDefault<CleaningOrder>($"SELECT ord.* FROM orders as ord WHERE Id = {id};");
             }
         }
 
